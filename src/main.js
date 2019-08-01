@@ -1,8 +1,8 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store";
-import request from "@/service/axios";
+import store from "./store/index";
+import { Plugin as request } from "@/service/axios";
 
 Vue.config.productionTip = false;
 Vue.use(request);

@@ -8,7 +8,7 @@ const instance = axios.create({
 // 拦截器
 instance.interceptors.request.use(
   function(config) {
-    console.log("config", config);
+    // console.log("config", config);
     // 在发送请求之前做些什么
     return config;
   },
@@ -22,7 +22,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   function(response) {
     // 对响应数据做点什么
-    console.log("response", response);
+    // console.log("response", response);
     return response;
   },
   function(error) {
@@ -47,8 +47,10 @@ const request = requestConfig => {
     });
 };
 
-export default {
+export const Plugin = {
   install: function(Vue) {
     Vue.prototype.$http = request;
   }
 };
+
+export const httpClient = request;

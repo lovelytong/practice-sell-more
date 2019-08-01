@@ -7,6 +7,20 @@
     <router-view />
   </div>
 </template>
+<script>
+import { mapActions } from "vuex";
+export default {
+  async mounted() {
+    this.getSeller();
+    // setTimeout(() => {
+    //   console.log(">>>>", this.$store.state.seller);
+    // }, 2000);
+  },
+  methods: {
+    ...mapActions({ getSeller: "seller/getSeller" })
+  }
+};
+</script>
 
 <style lang="scss">
 #app {

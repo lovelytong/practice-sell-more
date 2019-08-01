@@ -10,7 +10,7 @@
   </div>
 </template>
 <script>
-import api from "@/service/api";
+import { mapGetters } from "vuex";
 export default {
   name: "about",
   data() {
@@ -19,9 +19,11 @@ export default {
       msg: "helloWorld"
     };
   },
-  async mounted() {
-    const res = await this.$http(api.seller);
-    this.testData = res.data.infos;
+  computed: {
+    ...mapGetters({ seller: "seller/seller" })
+  },
+  mounted() {
+    this.testData = this.seller.infos;
   }
 };
 </script>
