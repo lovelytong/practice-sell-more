@@ -10,8 +10,7 @@
   </div>
 </template>
 <script>
-import axios from "axios";
-
+import api from "@/service/api";
 export default {
   name: "about",
   data() {
@@ -20,15 +19,9 @@ export default {
       msg: "helloWorld"
     };
   },
-  mounted() {
-    axios
-      .get("api/seller")
-      .then(res => {
-        this.testData = res.data.infos;
-      })
-      .catch(error => {
-        alert(error.message);
-      });
+  async mounted() {
+    const res = await this.$http(api.seller);
+    this.testData = res.data.infos;
   }
 };
 </script>
