@@ -3,22 +3,22 @@ import api from "@/service/api";
 export default {
   namespaced: true,
   state: {
-    seller: {}
+    sellerData: {}
   },
   getters: {
-    seller: state => {
-      return state.seller;
+    getSeller: state => {
+      return state.sellerData;
     }
   },
   mutations: {
     setSeller: (state, seller) => {
-      state.seller = seller;
+      state.sellerData = seller;
     }
   },
   actions: {
     getSeller: async function(context) {
       const res = await httpClient(api.seller);
-      context.commit("setSeller", res.data);
+      context.commit("setSeller", res.data.data);
     }
   }
 };

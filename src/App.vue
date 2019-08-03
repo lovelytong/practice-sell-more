@@ -10,11 +10,9 @@
 <script>
 import { mapActions } from "vuex";
 export default {
-  async mounted() {
+  mounted() {
+    console.log(">>>>>>>", process.env.NODE_ENV);
     this.getSeller();
-    // setTimeout(() => {
-    //   console.log(">>>>", this.$store.state.seller);
-    // }, 2000);
   },
   methods: {
     ...mapActions({ getSeller: "seller/getSeller" })

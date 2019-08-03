@@ -16,14 +16,16 @@ export default {
   data() {
     return {
       testData: [],
-      msg: "helloWorld"
+      msg: "helloWorld seller"
     };
   },
   computed: {
-    ...mapGetters({ seller: "seller/seller" })
+    ...mapGetters({ seller: "seller/getSeller" })
   },
   mounted() {
-    this.testData = this.seller.infos;
+    setTimeout(() => {
+      this.testData = this.seller.infos;
+    }, 1000);
   }
 };
 </script>
