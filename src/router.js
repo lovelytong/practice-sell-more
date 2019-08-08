@@ -1,17 +1,20 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
+import findLast from "lodash/findLast";
+import { check } from "./utils/auth";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: "/",
       name: "home",
       component: Home,
       meta: {
-        title: "home主页"
+        title: "home主页",
+        authority: ["admin", "user"]
       }
     },
     {
@@ -31,7 +34,8 @@ export default new Router({
       name: "menu",
       component: () => import("./views/TestMenu"),
       meta: {
-        title: "menu页"
+        title: "menu页",
+        authority: ["admin"]
       }
     },
     {
@@ -39,7 +43,7 @@ export default new Router({
       name: "menu1",
       component: { render: h => h("div", "menu1") },
       meta: {
-        title: "about页"
+        title: "menu1"
       }
     },
     {
@@ -87,6 +91,7 @@ export default new Router({
         {
           path: "/menu4/menu4-2",
           name: "menu4-2",
+          hideInMenu: true,
           component: { render: h => h("div", "menu4-2") },
           meta: {
             title: "menu4-2"
@@ -109,11 +114,24 @@ export default new Router({
           }
         }
       ]
+    },
+    {
+      path: "*",
+      component: () => import("./views/404")
+    },
+    {
+      path: "/403",
+      component: { render: h => h("div", "403") }
     }
-    // {
-    //   path: "*",
-    //   name: "any",
-    //   component: () => import("./views/404")
-    // }
   ]
 });
+
+router.beforeEach((to, from, next) => {
+  const record = findLast(to.matched, record => record.meta.authority);
+  if (record && !check(record.meta.authority)) {
+    next({ path: "/403" });
+  }
+  next();
+});
+
+export default router;

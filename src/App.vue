@@ -45,7 +45,7 @@ export default {
     getMenuData(routes) {
       const menuData = [];
       routes.forEach(item => {
-        if (item.name) {
+        if (item.name && !item.hideInMenu) {
           const newItem = { ...item };
           delete newItem.children;
           if (item.children) {
