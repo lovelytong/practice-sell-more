@@ -7,7 +7,9 @@
     <div v-for="(item, index) in testData" :key="index">
       {{ item }}
     </div>
-    <el-button type="primary">123</el-button>
+    <authorized :authority="['admin']">
+      <el-button type="primary">123</el-button>
+    </authorized>
   </div>
 </template>
 <script>
