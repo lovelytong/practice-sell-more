@@ -1,0 +1,15 @@
+/* 改变主题色变量 */
+$--color-primary: teal;
+
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";
+
+//引入字体图标库
+//@import "./fonts/iconfont.css";
+.tac {
+  .el-menu {
+    border-right: none;
+  }
+}

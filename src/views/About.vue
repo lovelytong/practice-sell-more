@@ -8,8 +8,9 @@
       {{ item }}
     </div>
     <authorized :authority="['admin']">
-      <el-button type="primary">123</el-button>
+      <el-button type="primary">权限组件</el-button>
     </authorized>
+    <el-button type="primary" v-auth="['admin']">权限指令</el-button>
   </div>
 </template>
 <script>
